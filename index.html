@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VS Code Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="vscode-container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span class="icon">👨‍💻</span>
+        <span>EXPLORER</span>
+        <button id="collapse-sidebar" class="collapse-button">▶</button>
+      </div>
+      <div class="file-explorer">
+        <div class="file-item" data-file="about.md">about.md</div>
+        <div class="file-item" data-file="skills.json">skills.json</div>
+        <div class="file-item" data-file="projects.js">projects.js</div>
+        <div class="file-item" data-file="education.md">education.md</div>
+        <div class="file-item" data-file="certifications.txt">certifications.txt</div>
+        <div class="file-item" data-file="contact.md">contact.md</div>
+      </div>
+    </div>
+
+    <div class="main-panel">
+      <div class="tabs-bar">
+        <div class="tab active" data-file="about.md">about.md</div>
+        <div class="tab" data-file="skills.json">skills.json</div>
+        <div class="tab" data-file="projects.js">projects.js</div>
+        <div class="tab" data-file="education.md">education.md</div>
+        <div class="tab" data-file="certifications.txt">certifications.txt</div>
+        <div class="tab" data-file="contact.md">contact.md</div>
+      </div>
+      <div class="editor">
+        <div class="editor-content active" data-file="about.md">
+          <h2>About Me</h2>
+          <p><strong>PABOLU VENKATA SUBRAHMANYA DHEERAJ</strong></p>
+          <p><em>Carrier Objective:</em> Work for an organization that provides me the opportunity to improve my skills and knowledge to grow along with the organization’s objective.</p>
+        </div>
+        <div class="editor-content" data-file="skills.json">
+          <h2>Technical Strengths</h2>
+          <pre><code class="language-json">{
+  "Programming Languages": ["Python 3", "Java"],
+  "Frameworks": ["Flask", "Spring Boot", "React js"],
+  "Web Technologies": ["HTML", "CSS", "Tailwindcss"],
+  "Database": ["Structured Query Language (SQL)"],
+  "Web Tools": ["Github", "Git"]
+}</code></pre>
+        </div>
+        <div class="editor-content" data-file="projects.js">
+          <h2>Projects</h2>
+          <h3>Full-Stack Firebase User Portfolio System</h3>
+          <ul>
+            <li>Developed user authentication, profile management, and file upload features using Firebase Authentication, Realtime Database & Storage.</li>
+            <li>Built a clean and responsive UI using HTML and CSS to ensure user-friendly interface.</li>
+            <li>Created an admin dashboard in Flask to manage user lifecycle (CRUD operations), leading to clean and structured data handling.</li>
+          </ul>
+          <h3>Representation and Symbols of Nucleotide Sequence Data</h3>
+          <ul>
+            <li>Developed a tool that converts any input text into a DNA-base sequence (A, C, G, T) and displays the output in four distinct colours.</li>
+          </ul>
+          <h3>Resume to Portfolio Generator</h3>
+          <ul>
+            <li>Built a full-stack application using React (Vite) and Flask that converts resume PDFs into AI-generated, responsive portfolio websites.</li>
+            <li>Automated deployment by integrating GitHub APIs to create repositories, upload HTML/CSS files, and deliver a live GitHub Pages link within seconds.</li>
+          </ul>
+        </div>
+        <div class="editor-content" data-file="education.md">
+          <h2>Education</h2>
+          <h3>Bachelor of Engineering, Computer Science and Engineering</h3>
+          <p>R . M . D E n g i n e e r i n g C o l l e g e , C h e n n a i</p>
+          <p>2022 - 2026</p>
+          <p>CGPA: 7.70</p>
+          <h3>Higher Secondary School</h3>
+          <p>N a r a y a n a J r . c o l l e g e , N e l l o r e</p>
+          <p>2020 - 2022</p>
+          <p>Percentage: 92.6</p>
+          <h3>Secondary Education</h3>
+          <p>V i v e k a n a n d a H . S</p>
+          <p>2020</p>
+          <p>Percentage: 76.17</p>
+        </div>
+        <div class="editor-content" data-file="certifications.txt">
+          <h2>Certifications</h2>
+          <ul>
+            <li>DATA BASE MANAGEMENT SYSTEM - NPTEL</li>
+            <li>Responsive Web Design - free code camp</li>
+          </ul>
+        </div>
+        <div class="editor-content" data-file="contact.md">
+          <h2>Contact</h2>
+          <p><strong>Address:</strong> B-11-582, Chennuru road, Buchi reddy palem</p>
+          <p><strong>Phone:</strong> (+91)7032671918</p>
+          <p><strong>Email:</strong> subrahmanyadheeraj1918@gmail.com</p>
+          <p><strong>Portfolio:</strong> <a href="https://dheeraj1918.github.io/portfolio/" target="_blank">https://dheeraj1918.github.io/portfolio/</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/dheeraj1918" target="_blank">https://github.com/dheeraj1918</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sidebar = document.querySelector('.sidebar');
+    const collapseButton = document.getElementById('collapse-sidebar');
+    const fileItems = document.querySelectorAll('.file-item');
+    const tabs = document.querySelectorAll('.tab');
+    const editorContents = document.querySelectorAll('.editor-content');
+
+    function openFile(fileName) {
+      // Update active tab
+      tabs.forEach(tab => {
+        if (tab.dataset.file === fileName) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      // Show corresponding editor content
+      editorContents.forEach(content => {
+        if (content.dataset.file === fileName) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+    }
+
+    // File explorer click handling
+    fileItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const fileName = item.dataset.file;
+        openFile(fileName);
+      });
+    });
+
+    // Tab management
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const fileName = tab.dataset.file;
+        openFile(fileName);
+      });
+    });
+
+    // Active file state (initial load)
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialFile = document.querySelector('.tab.active').dataset.file;
+      openFile(initialFile);
+    });
+
+    // Sidebar toggle
+    collapseButton.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      collapseButton.classList.toggle('collapsed');
+      if (sidebar.classList.contains('collapsed')) {
+        collapseButton.innerHTML = '▶';
+      } else {
+        collapseButton.innerHTML = '◀';
+      }
+    });
+  </script>
+
+</body>
+</html>
